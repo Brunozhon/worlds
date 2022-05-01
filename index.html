@@ -6,22 +6,63 @@
   </head>
   <body>
     <pre id="game"> <!-- TODO -->
-      Welcome to Worlds!
-      <noscript>
-        This game requires JavaScript.
-      </noscript>
+      Welcome to Worlds! <noscript>Unfourtunately, this game requires JavaScript.</noscript>
+      In Worlds, you have multiple worlds to go to. You can have a profession.
+      There are different worlds. Let's start with mining, ok?
     </pre>
     <script>
+      // Superglobals
+      var game = document.getElementById("game");
+      function output(str) {
+        game.innerHTML += str + "\n";
+      }
       function main() {
-        // Globals (TODO)
-        var game = document.getElementById("game")
-        function output(str) {
-          game.innerHTML += str + "\n"
-        }
         // Game (TODO)
+        output("Loading mining world...");
+        setTimeout(mine, 2500);
+      }
+      main();
+      function MiningWorld() {
+        if (!new.target) {
+          return new MiningWorld();
+        }
+      }
+      MiningWorld.prototype = {
+        get layers() {
+          var layers = [];
+          for (let i = 0; i < 8; i++) {
+            layers.push([]);
+            for (let j = 0; j < 8; j++) {
+              if (j == 0 && i == 0) {
+                layers[i].push("g");
+              } else if (i == 0) {
+                if (Math.random() < 0.3) {
+                  layers[i].push("s");
+                } else {
+                  layers[i].push("d");
+                }
+              }
+            }
+          }
+          return layers;
+        }
+      };
+      MiningWorld.blockKey = [
+        "~": NaN, // Water
+        "g": 1, // Grass
+        "d": 1, // Dirt
+        "s": 2, // Stone
+        "c": 3, // Coal Ore
+        "i": 5, // Iron Ore
+        "s": 10, // Silver Ore
+        "l": 15, // Gold Ore
+        "a": 20, // Diamond Ore
+        "b": Infinity // Bedrock
+      ]
+      function mine() {
+        var miningWorld = MiningWorld()
         
       }
-      main()
     </script>
   </body>
 </html>
