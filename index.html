@@ -6,9 +6,9 @@
   </head>
   <body>
     <pre id="game"> <!-- TODO -->
-      Welcome to Worlds! <noscript>Unfourtunately, this game requires JavaScript.</noscript>
-      In Worlds, you have multiple worlds to go to. You can have a profession.
-      There are different worlds. Let's start with mining, ok?
+Welcome to Worlds! <noscript>Unfourtunately, this game requires JavaScript.</noscript>
+In Worlds, you have multiple worlds to go to. You can have a profession.
+There are different worlds. Let's start with mining, ok?
     </pre>
     <script>
       // Superglobals
@@ -34,17 +34,32 @@
             layers.push([]);
             for (let j = 0; j < 8; j++) {
               if (j == 0 && i == 0) {
-                layers[i].push("g");
+                layers[i].push(["g", "g", "g", "g", "g", "g", "g", "g"]);
               } else if (i == 0) {
-                if (Math.random() < 0.3) {
-                  layers[i].push("s");
-                } else {
-                  layers[i].push("d");
+                for (let k = 0; k < 8; k++) {
+                  if (Math.random() < 0.3) {
+                    layers[i][j].push("s");
+                  } else {
+                    layers[i][j].push("d");
+                  }
                 }
               }
             }
           }
           return layers;
+        },
+        toString() {
+          var str = ""
+          for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+              str += this.layers[i][j].join(" ") + (i < 7 ? "\n" : "");
+            }
+            str += i < 7 ? "---------------" : "";
+          }
+          return str;
+        },
+        toLocaleString() {
+          return this.toString();
         }
       };
       MiningWorld.blockKey = {
@@ -60,8 +75,35 @@
         "b": Infinity // Bedrock
       }
       function mine() {
-        var miningWorld = MiningWorld()
+        var money = 0;
+        var pickaxePower = 1;
+        var miningWorld = MiningWorld();
+        show(`COMMANDS
+
+- d: Down
+- l: Left
+- r: Right
+- n: Next
+- s: Save
+- r: Restore
+
+STATS
+
+Pickaxe Power: ${pickaxePower}
+Money: ${money}
+
+Ready? (Press Enter to start.)
+<input type="text" id="ready-9421">`)
+        document.getElementById("ready-9421").onkeyup = function(e) {
+          if (e.code == "Enter") {
+            startMine(miningWorld, money, pickaxePower)
+          }
+        }
+      }
+      function startMine(miningWorld, money, pickaxePower) {
+        show(`Your mining world:
         
+        ${miningWorld.toString()}`)
       }
     </script>
   </body>
