@@ -47,7 +47,7 @@
           return layers;
         }
       };
-      MiningWorld.blockKey = [
+      MiningWorld.blockKey = {
         "~": NaN, // Water
         "g": 1, // Grass
         "d": 1, // Dirt
@@ -58,7 +58,7 @@
         "l": 15, // Gold Ore
         "a": 20, // Diamond Ore
         "b": Infinity // Bedrock
-      ]
+      }
       function mine() {
         var miningWorld = MiningWorld()
         
