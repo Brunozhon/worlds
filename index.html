@@ -78,7 +78,7 @@ There are different worlds. Let's start with mining, ok?
         var money = 0;
         var pickaxePower = 1;
         var miningWorld = MiningWorld();
-        show(`COMMANDS
+        output(`COMMANDS
 
 - d: Down
 - l: Left
@@ -93,7 +93,7 @@ Pickaxe Power: ${pickaxePower}
 Money: ${money}
 
 Ready? (Press Enter to start.)
-<input type="text" id="ready-9421">`)
+<input type="text" id="ready-9421">`);
         document.getElementById("ready-9421").onkeyup = function(e) {
           if (e.code == "Enter") {
             startMine(miningWorld, money, pickaxePower)
@@ -101,7 +101,7 @@ Ready? (Press Enter to start.)
         }
       }
       function startMine(miningWorld, money, pickaxePower) {
-        show(`Your mining world:
+        output(`Your mining world:
         
         ${miningWorld.toString()}`)
       }
