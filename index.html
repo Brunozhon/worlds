@@ -35,13 +35,27 @@ There are different worlds. Let's start with mining, ok?
             for (let j = 0; j < 8; j++) {
               if (j == 0 && i == 0) {
                 layers[i].push(["g", "g", "g", "g", "g", "g", "g", "g"]);
-              } else if (i == 0) {
+              } else {
                 for (let k = 0; k < 8; k++) {
-                  if (Math.random() < 0.3) {
-                    layers[i][j].push("s");
-                  } else {
-                    layers[i][j].push("d");
+                  let rand = Math.random()
+                  if (i == 0) {
+                    if (rand < 0.3) {
+                      layers[i][j].push("s");
+                    } else {
+                      layers[i][j].push("d");
+                    }
+                  } else if (i == 1 || i == 2 || i == 3) {
+                    if (rand < 0.05) {
+                      layers[i][j].push("v")
+                    } else if (rand < 0.2) {
+                      layers[i][j].push("i")
+                    } else if (rand < 0.5) {
+                      layers[i][j].push("c")
+                    } else {
+                      layers[i][j].push("s")
+                    }
                   }
+                  // TODO
                 }
               }
             }
@@ -69,7 +83,7 @@ There are different worlds. Let's start with mining, ok?
         "s": 2, // Stone
         "c": 3, // Coal Ore
         "i": 5, // Iron Ore
-        "s": 10, // Silver Ore
+        "v": 10, // Silver Ore
         "l": 15, // Gold Ore
         "a": 20, // Diamond Ore
         "b": Infinity // Bedrock
