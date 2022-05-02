@@ -35,6 +35,8 @@ There are different worlds. Let's start with mining, ok?
             for (let j = 0; j < 8; j++) {
               if (j == 0 && i == 0) {
                 layers[i].push(["g", "g", "g", "g", "g", "g", "g", "g"]);
+              } else if (j == 8 && i == 8) {
+                layers[i].push(["b", "b", "b", "b", "b", "b", "b", "b"])
               } else {
                 for (let k = 0; k < 8; k++) {
                   let rand = Math.random()
@@ -48,6 +50,20 @@ There are different worlds. Let's start with mining, ok?
                     if (rand < 0.05) {
                       layers[i][j].push("v")
                     } else if (rand < 0.2) {
+                      layers[i][j].push("i")
+                    } else if (rand < 0.5) {
+                      layers[i][j].push("c")
+                    } else {
+                      layers[i][j].push("s")
+                    }
+                  } else {
+                    if (rand < 0.02) {
+                      layers[i][j].push("a")
+                    } else if (rand < 0.05) {
+                      layers[i][j].push("l")
+                    } else if (rand < 0.15) {
+                      layers[i][j].push("v")
+                    } else if (rand < 0.3) {
                       layers[i][j].push("i")
                     } else if (rand < 0.5) {
                       layers[i][j].push("c")
